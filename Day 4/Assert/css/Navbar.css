@@ -1,0 +1,34 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.navbar{
+    position: fixed;
+    height: 9%;
+    width: 100%;
+    top: 0;
+    background-color: #19a8d093;
+}
+.navbar-container{
+    position: fixed;
+    height: 9%;
+    width: 100%;
+    top: 0;
+    background-color: #19a8d093;
+}
+.icon
+{
+    float: right;
+    padding: 0.5%;
+    
+}
+.css-tzssek-MuiSvgIcon-root{
+    color:rgb(0, 0, 0);
+}
+.text
+{
+    font-size: 20px;
+    justify-content: center;
+    color: #03103d;
+    margin-block: -10px;
+}
