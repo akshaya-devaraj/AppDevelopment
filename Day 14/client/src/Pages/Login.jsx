@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 import '../Assert/css/login.css';
 import { login } from '../Redux/userSlice';
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 export default function Login() {
   const nav=useNavigate("");
   const[username,setUsername]= useState('');
@@ -11,28 +12,30 @@ export default function Login() {
   const[error,setError]=useState(false);
   const dispatch=useDispatch();
   
-  const formHandler=(event)=>
+  const formHandler=async(event)=>
   {
     event.preventDefault();
-    if(username.length==0 || password.length==0)
-    {
-         setError(true);
-    }
-    if(username && password)
-    {
-    if(username.length!=0 && password.length!=0)
-    { 
+    try{ if (username === "admin" && password === "admin@123") {
       dispatch(login(username));
+      nav("/admindashboard");
+    }
+    else if (username.length === 0 && password.length === 0) {
+      setError(true);
+    } else if (password.length < 8) {
+      setError(true);
+    } else if (username && password) {
+      dispatch(login(username));
+      await axios.post("http://localhost:8080/auth/authenticate",{username,password});
       nav("/home");
-    }
-    if(username == password)
+    }}
+    catch(error)
     {
-      nav("/admindash");
+      alert("Incorrect Username and Password.");
     }
-  }
+    
   
-   
   }
+   
 return (
   <>
   <div className='body'>
